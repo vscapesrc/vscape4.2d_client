@@ -26,70 +26,70 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.runescape.a.Archive;
-import com.runescape.a.Class4;
-import com.runescape.a.Index;
-import com.runescape.a.a.Animation;
-import com.runescape.a.a.Frame;
-import com.runescape.a.a.SpotAnimation;
-import com.runescape.a.b.ActorDefinition;
-import com.runescape.a.b.ItemDefinition;
-import com.runescape.a.b.ObjectDefinition;
-import com.runescape.a.c.Class71;
-import com.runescape.a.c.IndexedImage;
-import com.runescape.a.c.RSFont;
-import com.runescape.a.c.Sprite;
-import com.runescape.a.c.Widget;
-import com.runescape.b.ProducingGraphicsBuffer;
-import com.runescape.b.Rasterizer2D;
-import com.runescape.b.Rasterizer3D;
-import com.runescape.c.Actor;
-import com.runescape.c.GameAnimableObject;
-import com.runescape.c.GameObject;
-import com.runescape.c.Item;
-import com.runescape.c.Npc;
-import com.runescape.c.Player;
-import com.runescape.c.Projectile;
-import com.runescape.c.Renderable;
-import com.runescape.c.RenderableObject;
-import com.runescape.c.a.IdentityKit;
-import com.runescape.c.a.Model;
-import com.runescape.d.Buffer;
-import com.runescape.d.Class32;
-import com.runescape.e.LinkedList;
-import com.runescape.e.Node;
-import com.runescape.f.CollisionMap;
-import com.runescape.f.Floor;
-import com.runescape.f.MapRegion;
-import com.runescape.f.SceneGraph;
-import com.runescape.f.a.Class15;
-import com.runescape.f.a.GroundDecoration;
-import com.runescape.f.a.Wall;
-import com.runescape.f.a.WallDecoration;
-import com.runescape.g.BufferedConnection;
-import com.runescape.g.Class54;
-import com.runescape.g.IsaacCipher;
-import com.runescape.g.Resource;
-import com.runescape.g.ResourceProvider;
-import com.runescape.h.Node1;
-import com.runescape.h.VarBits;
-import com.runescape.i.SignLink;
-import com.runescape.j.Class49;
-import com.runescape.j.MidiPlayer;
-import com.runescape.j.Track;
-import com.runescape.k.ChatMessageCodec;
-import com.runescape.k.MessageCensor;
-import com.runescape.k.MouseMonitor;
-import com.runescape.k.SkillConstants;
-import com.runescape.k.StringUtils;
+import vscape.RSAConstants;
+import vscape.Settings;
+import vscape.content.CacheUpdater;
+import vscape.overlay.OverlayTemplate;
+import vscape.overlay.Overlays;
 
-import a.Class39;
-import a.VScapeSettings;
-import a.a.VScapeCacheUpdater;
-import a.b.Class3;
-import a.b.Class1;
+import com.runescape.cache.Archive;
+import com.runescape.cache.Class4;
+import com.runescape.cache.Index;
+import com.runescape.cache.anim.Animation;
+import com.runescape.cache.anim.Frame;
+import com.runescape.cache.anim.SpotAnimation;
+import com.runescape.cache.def.ActorDefinition;
+import com.runescape.cache.def.ItemDefinition;
+import com.runescape.cache.def.ObjectDefinition;
+import com.runescape.cache.gui.Class71;
+import com.runescape.cache.gui.IndexedImage;
+import com.runescape.cache.gui.RSFont;
+import com.runescape.cache.gui.Sprite;
+import com.runescape.cache.gui.Widget;
+import com.runescape.data.LinkedList;
+import com.runescape.data.Node;
+import com.runescape.entity.Actor;
+import com.runescape.entity.GameAnimableObject;
+import com.runescape.entity.GameObject;
+import com.runescape.entity.Item;
+import com.runescape.entity.Npc;
+import com.runescape.entity.Player;
+import com.runescape.entity.Projectile;
+import com.runescape.entity.Renderable;
+import com.runescape.entity.RenderableObject;
+import com.runescape.entity.model.IdentityKit;
+import com.runescape.entity.model.Model;
+import com.runescape.graphics.ProducingGraphicsBuffer;
+import com.runescape.graphics.Rasterizer2D;
+import com.runescape.graphics.Rasterizer3D;
+import com.runescape.network.BufferedConnection;
+import com.runescape.network.IsaacCipher;
+import com.runescape.network.PacketConstants;
+import com.runescape.network.Resource;
+import com.runescape.network.ResourceProvider;
+import com.runescape.scene.CollisionMap;
+import com.runescape.scene.Floor;
+import com.runescape.scene.MapRegion;
+import com.runescape.scene.SceneGraph;
+import com.runescape.scene.world.Ground;
+import com.runescape.scene.world.GroundDecoration;
+import com.runescape.scene.world.Wall;
+import com.runescape.scene.world.WallDecoration;
+import com.runescape.sign.SignLink;
+import com.runescape.sound.Class49;
+import com.runescape.sound.MidiPlayer;
+import com.runescape.sound.Track;
+import com.runescape.stream.Buffer;
+import com.runescape.stream.Class32;
+import com.runescape.utils.ChatMessageCodec;
+import com.runescape.utils.MessageCensor;
+import com.runescape.utils.MouseMonitor;
+import com.runescape.utils.SkillConstants;
+import com.runescape.utils.StringUtils;
+import com.runescape.var.VarBits;
+import com.runescape.var.Varp;
 
-public class Client extends ScapeApplet {
+public class Client extends RSApplet {
    private static int ab = 765;
    private static int ac = 503;
    private int ad;
@@ -468,7 +468,7 @@ public class Client extends ScapeApplet {
    private boolean gI;
    private int gJ;
    private MidiPlayer gK;
-   public Class3 E;
+   public Overlays E;
    private final int[] gL;
    private CollisionMap[] gM;
    public static int[] F;
@@ -561,8 +561,8 @@ public class Client extends ScapeApplet {
             this.k();
          }
 
-         if(this.w && (VScapeSettings.d != q || VScapeSettings.e != r)) {
-            VScapeSettings.a();
+         if(this.w && (Settings.d != q || Settings.e != r)) {
+            Settings.a();
          }
       }
 
@@ -612,8 +612,8 @@ public class Client extends ScapeApplet {
          } else if(var1 == 1) {
             d = 10;
             var7 = true;
-            var2 = VScapeSettings.d > 0?VScapeSettings.d:900;
-            var3 = VScapeSettings.e > 0?VScapeSettings.e:600;
+            var2 = Settings.d > 0?Settings.d:900;
+            var3 = Settings.e > 0?Settings.e:600;
          } else if(var1 == 2) {
             d = 10;
             var7 = true;
@@ -642,7 +642,7 @@ public class Client extends ScapeApplet {
                var10.O.dispose();
             }
 
-            var10.O = new ScapeFrame(var10, var5, var4, var11);
+            var10.O = new RSFrame(var10, var5, var4, var11);
             var10.O.addWindowListener(var10);
             var10.M = var10.O.getGraphics();
             var10.e().addMouseWheelListener(var10);
@@ -712,7 +712,7 @@ public class Client extends ScapeApplet {
          return var13 != null?(String)var14.get(var13):null;
       } else {
          var0 = "/sbin/ifconfig";
-         Pattern var1 = Pattern.compile("([a-fA-F0-9]{1,2}(-|:)){5}[a-fA-F0-9]{1,2}");
+         Pattern var1 = Pattern.compile("([vscape-fA-F0-9]{1,2}(-|:)){5}[vscape-fA-F0-9]{1,2}");
 
          try {
             Process var2 = null;
@@ -3075,7 +3075,7 @@ public class Client extends ScapeApplet {
    private void j(int var1) {
       try {
          int var2;
-         if((var2 = Node1.a[var1].b) == 0) {
+         if((var2 = Varp.a[var1].b) == 0) {
             return;
          }
 
@@ -3925,9 +3925,9 @@ public class Client extends ScapeApplet {
       this.fe = "";
       this.aI = 0;
       this.bP = 0;
-      Class3 var1 = this.E;
-      Class1[] var2;
-      int var3 = (var2 = Class3.a()).length;
+      Overlays var1 = this.E;
+      OverlayTemplate[] var2;
+      int var3 = (var2 = Overlays.a()).length;
 
       for(int var4 = 0; var4 < var3; ++var4) {
          var2[var4].b();
@@ -4033,7 +4033,7 @@ public class Client extends ScapeApplet {
                      this.o.a(2, this.gH);
                   }
 
-                  VScapeSettings.a();
+                  Settings.a();
                }
 
                if(this.hn.length() > 0 || this.ho.length() > 0) {
@@ -4051,7 +4051,7 @@ public class Client extends ScapeApplet {
                      c = true;
                   }
 
-                  VScapeSettings.a();
+                  Settings.a();
                }
 
                if(super.U == 1 && this.b(var2 - 100, var3 - 64, var2 + Class4.a("login", 1).b / 2, var3 - 38)) {
@@ -4066,8 +4066,8 @@ public class Client extends ScapeApplet {
                   if(y.length() > 0 && z.length() > 0) {
                      this.dN = 0;
                      this.a(y, z, false);
-                     if(!VScapeSettings.a.equals(y) || !VScapeSettings.b.equals(z)) {
-                        VScapeSettings.a();
+                     if(!Settings.a.equals(y) || !Settings.b.equals(z)) {
+                        Settings.a();
                      }
 
                      this.y();
@@ -4075,7 +4075,7 @@ public class Client extends ScapeApplet {
                         break label180;
                      }
                   } else {
-                     this.hn = "Please enter a valid login.";
+                     this.hn = "Please enter vscape valid login.";
                   }
                }
 
@@ -4780,7 +4780,7 @@ public class Client extends ScapeApplet {
          var4.L = var1;
          boolean var10006 = s == 2;
          int var10007 = s;
-         var4.O = new ScapeFrame(var4, var4.K, var4.L, var10006);
+         var4.O = new RSFrame(var4, var4.K, var4.L, var10006);
          var4.O.setFocusTraversalKeysEnabled(false);
          var4.M = var4.e().getGraphics();
          var4.N = new ProducingGraphicsBuffer(var4.K, var4.L, var4.e());
@@ -5395,7 +5395,7 @@ public class Client extends ScapeApplet {
    }
 
    private void B() {
-      for(Class15 var1 = (Class15)this.gb.b(); var1 != null; var1 = (Class15)this.gb.d()) {
+      for(Ground var1 = (Ground)this.gb.b(); var1 != null; var1 = (Ground)this.gb.d()) {
          if(var1.d == -1) {
             var1.l = 0;
             this.a(var1);
@@ -5800,15 +5800,15 @@ public class Client extends ScapeApplet {
                switch(var3) {
                case 19156:
                   this.e = !this.e;
-                  VScapeSettings.a();
+                  Settings.a();
                   break;
                case 24149:
                   this.e(0);
-                  VScapeSettings.a();
+                  Settings.a();
                   break;
                case 24150:
                   this.e(1);
-                  VScapeSettings.a();
+                  Settings.a();
                   break;
                case 24151:
                   this.e(2);
@@ -6186,19 +6186,19 @@ public class Client extends ScapeApplet {
             if(var4 == 1008) {
                this.g = 2;
                D = true;
-               VScapeSettings.a();
+               Settings.a();
             }
 
             if(var4 == 1007) {
                this.g = 1;
                D = true;
-               VScapeSettings.a();
+               Settings.a();
             }
 
             if(var4 == 1006) {
                this.g = 0;
                D = true;
-               VScapeSettings.a();
+               Settings.a();
             }
 
             if(var4 == 1005) {
@@ -6215,19 +6215,19 @@ public class Client extends ScapeApplet {
             if(var4 == 1002) {
                this.h = 2;
                D = true;
-               VScapeSettings.a();
+               Settings.a();
             }
 
             if(var4 == 1001) {
                this.h = 1;
                D = true;
-               VScapeSettings.a();
+               Settings.a();
             }
 
             if(var4 == 1000) {
                this.h = 0;
                D = true;
-               VScapeSettings.a();
+               Settings.a();
             }
 
             if(var4 == 999) {
@@ -6327,19 +6327,19 @@ public class Client extends ScapeApplet {
             if(var4 == 983) {
                this.f = 2;
                D = true;
-               VScapeSettings.a();
+               Settings.a();
             }
 
             if(var4 == 982) {
                this.f = 1;
                D = true;
-               VScapeSettings.a();
+               Settings.a();
             }
 
             if(var4 == 981) {
                this.f = 0;
                D = true;
-               VScapeSettings.a();
+               Settings.a();
             }
 
             if(var4 == 980) {
@@ -6708,7 +6708,7 @@ public class Client extends ScapeApplet {
                } else if(var23.s != null) {
                   var10 = new String(var23.s);
                } else {
-                  var10 = "It\'s a " + var23.o + ".";
+                  var10 = "It\'s vscape " + var23.o + ".";
                }
 
                this.a(var10, 0, "", true);
@@ -6737,7 +6737,7 @@ public class Client extends ScapeApplet {
                   if((var21 = ItemDefinition.a(var5 >> 14 & 32767)).u != null) {
                      var10 = new String(var21.u);
                   } else {
-                     var10 = "It\'s a " + var21.b + ".";
+                     var10 = "It\'s vscape " + var21.b + ".";
                   }
 
                   this.a(var10, 0, "", true);
@@ -6762,7 +6762,7 @@ public class Client extends ScapeApplet {
                   if((var23 = ObjectDefinition.a(var5)).s != null) {
                      var22 = new String(var23.s);
                   } else {
-                     var22 = "It\'s a " + var23.o + ".";
+                     var22 = "It\'s vscape " + var23.o + ".";
                   }
 
                   this.a(var22, 0, "", true);
@@ -7030,9 +7030,9 @@ public class Client extends ScapeApplet {
 
       this.by = null;
       if(this.E != null) {
-         Class3 var1 = this.E;
-         Class1[] var2;
-         int var3 = (var2 = Class3.a()).length;
+         Overlays var1 = this.E;
+         OverlayTemplate[] var2;
+         int var3 = (var2 = Overlays.a()).length;
 
          for(int var4 = 0; var4 < var3; ++var4) {
             var2[var4].c();
@@ -7137,7 +7137,7 @@ public class Client extends ScapeApplet {
       Animation.a = null;
       SpotAnimation.a = null;
       SpotAnimation.h = null;
-      Node1.a = null;
+      Varp.a = null;
       super.N = null;
       Player.aj = null;
       Rasterizer3D.a();
@@ -7311,7 +7311,7 @@ public class Client extends ScapeApplet {
                      this.E.a(this.bE);
                      if(this.bE.equalsIgnoreCase("::toggleroofs")) {
                         this.e = !this.e;
-                        VScapeSettings.a();
+                        Settings.a();
                      }
 
                      if(this.bo >= 2) {
@@ -8354,7 +8354,7 @@ public class Client extends ScapeApplet {
             var8.b = 0;
             byte[] var10 = new byte[var9];
             var8.a(var9, 0, var10);
-            byte[] var17 = (new BigInteger(var10)).modPow(Class39.b, Class39.a).toByteArray();
+            byte[] var17 = (new BigInteger(var10)).modPow(RSAConstants.b, RSAConstants.a).toByteArray();
             var8.b = 0;
             var8.b(var17.length);
             var8.a(var17, var17.length, 0);
@@ -8504,7 +8504,7 @@ public class Client extends ScapeApplet {
             fL = 0;
             gG = 0;
             this.G();
-            this.e(VScapeSettings.c);
+            this.e(Settings.c);
          } else if(var6 == 3) {
             this.ho = "";
             this.hn = "Invalid username or password.";
@@ -8519,7 +8519,7 @@ public class Client extends ScapeApplet {
             this.ho = "Download the new client.";
          } else if(var6 == 7) {
             this.hn = "This world is full.";
-            this.ho = "Please use a different world.";
+            this.ho = "Please use vscape different world.";
          } else if(var6 == 8) {
             this.hn = "Unable to connect.";
             this.ho = "Login server offline.";
@@ -8533,8 +8533,8 @@ public class Client extends ScapeApplet {
             this.ho = "Login server rejected session.";
             this.ho = "Please try again.";
          } else if(var6 == 12) {
-            this.hn = "You need a members account to login to this world.";
-            this.ho = "Please subscribe, or use a different world.";
+            this.hn = "You need vscape members account to login to this world.";
+            this.ho = "Please subscribe, or use vscape different world.";
          } else if(var6 == 13) {
             this.hn = "Could not complete login.";
             this.ho = "Please try again.";
@@ -8560,8 +8560,8 @@ public class Client extends ScapeApplet {
             this.hn = "Login attempts exceeded.";
             this.ho = "Please wait 1 minute and try again.";
          } else if(var6 == 17) {
-            this.hn = "You are standing in a members-only area.";
-            this.ho = "To play on this world move to a free area first";
+            this.hn = "You are standing in vscape members-only area.";
+            this.ho = "To play on this world move to vscape free area first";
          } else if(var6 == 20) {
             this.hn = "Invalid loginserver requested";
             this.ho = "Please try again.";
@@ -9413,7 +9413,7 @@ public class Client extends ScapeApplet {
       }
    }
 
-   private void a(Class15 var1) {
+   private void a(Ground var1) {
       int var2 = 0;
       int var3 = -1;
       int var4 = 0;
@@ -9486,7 +9486,7 @@ public class Client extends ScapeApplet {
 
    final void f() {
       this.a(20, (String)"Starting up");
-      (new VScapeCacheUpdater(this)).a();
+      (new CacheUpdater(this)).a();
 
       try {
          Client var1 = this;
@@ -9509,7 +9509,7 @@ public class Client extends ScapeApplet {
       }
 
       try {
-         VScapeSettings.b();
+         Settings.b();
       } catch (Exception var16) {
          ;
       }
@@ -9711,7 +9711,7 @@ public class Client extends ScapeApplet {
          ActorDefinition.a(var28);
          IdentityKit.a(var28);
          SpotAnimation.a(var28);
-         Node1.a(var28);
+         Varp.a(var28);
          VarBits.a(var28);
          ObjectDefinition.u = cH;
          this.a(90, (String)"Unpacking sounds");
@@ -11056,7 +11056,7 @@ public class Client extends ScapeApplet {
 
             if(var0 != 8) {
                Widget.e[var0 + '\uc353'].b = Class4.a("bank", 15);
-               Widget.e[var0 + '\uc353'].n = "Drag an item here to create a new tab";
+               Widget.e[var0 + '\uc353'].n = "Drag an item here to create vscape new tab";
             }
 
             if(var1 > 0) {
@@ -11317,7 +11317,7 @@ public class Client extends ScapeApplet {
                            if(var16 == 652) {
                               if(this.fU == 201) {
                                  if(this.fp == 1) {
-                                    var13.M = "@yel@This is a non-members world: @whi@Since you are a member we";
+                                    var13.M = "@yel@This is vscape non-members world: @whi@Since you are vscape member we";
                                  } else {
                                     var13.M = "";
                                  }
@@ -11339,7 +11339,7 @@ public class Client extends ScapeApplet {
                            if(var16 == 653) {
                               if(this.fU == 201) {
                                  if(this.fp == 1) {
-                                    var13.M = "@whi@recommend you use a members world instead. You may use";
+                                    var13.M = "@whi@recommend you use vscape members world instead. You may use";
                                  } else {
                                     var13.M = "";
                                  }
@@ -11873,8 +11873,8 @@ public class Client extends ScapeApplet {
 
    public final void a(int var1, int var2) {
       if((super.Z == 5 || super.aa && super.Z == 5) && this.w) {
-         int var3 = VScapeSettings.f;
-         if(VScapeSettings.f <= 0) {
+         int var3 = Settings.f;
+         if(Settings.f <= 0) {
             var3 = 1;
          }
 
@@ -12007,9 +12007,9 @@ public class Client extends ScapeApplet {
             var2.setFont(new Font("Helvetica", 1, 12));
             var2.drawString("1: Try closing ALL open web-browser windows, and reloading", 30, 135);
             var2.drawString("2: Try clearing your web-browsers cache from tools->internet options", 30, 165);
-            var2.drawString("3: Try using a different game-world", 30, 195);
+            var2.drawString("3: Try using vscape different game-world", 30, 195);
             var2.drawString("4: Try rebooting your computer", 30, 225);
-            var2.drawString("5: Try selecting a different version of Java from the play-game menu", 30, 255);
+            var2.drawString("5: Try selecting vscape different version of Java from the play-game menu", 30, 255);
          }
 
       } else {
@@ -12131,7 +12131,7 @@ public class Client extends ScapeApplet {
 
    private void P() {
       if(this.dC == 2) {
-         for(Class15 var1 = (Class15)this.gb.b(); var1 != null; var1 = (Class15)this.gb.d()) {
+         for(Ground var1 = (Ground)this.gb.b(); var1 != null; var1 = (Ground)this.gb.d()) {
             if(var1.d > 0) {
                --var1.d;
             }
@@ -12784,9 +12784,9 @@ public class Client extends ScapeApplet {
    }
 
    private void a(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9) {
-      Class15 var10 = null;
+      Ground var10 = null;
 
-      for(Class15 var11 = (Class15)this.gb.b(); var11 != null; var11 = (Class15)this.gb.d()) {
+      for(Ground var11 = (Ground)this.gb.b(); var11 != null; var11 = (Ground)this.gb.d()) {
          if(var11.e == var7 && var11.g == var8 && var11.h == var5 && var11.f == var4) {
             var10 = var11;
             break;
@@ -12794,7 +12794,7 @@ public class Client extends ScapeApplet {
       }
 
       if(var10 == null) {
-         (var10 = new Class15()).e = var7;
+         (var10 = new Ground()).e = var7;
          var10.f = var4;
          var10.g = var8;
          var10.h = var5;
@@ -13402,7 +13402,7 @@ public class Client extends ScapeApplet {
                   this.dq = this.dq - this.dk.a() & 255;
                }
 
-               this.dp = Class54.a[this.dq];
+               this.dp = PacketConstants.a[this.dq];
                --var64;
             }
 
@@ -13664,7 +13664,7 @@ public class Client extends ScapeApplet {
                   }
                }
 
-               for(Class15 var86 = (Class15)this.gb.b(); var86 != null; var86 = (Class15)this.gb.d()) {
+               for(Ground var86 = (Ground)this.gb.b(); var86 != null; var86 = (Ground)this.gb.d()) {
                   if(var86.g >= this.hp && var86.g < this.hp + 8 && var86.h >= this.hq && var86.h < this.hq + 8 && var86.e == this.bY) {
                      var86.d = 0;
                   }
@@ -13952,7 +13952,7 @@ public class Client extends ScapeApplet {
                   }
                }
 
-               for(Class15 var77 = (Class15)this.gb.b(); var77 != null; var77 = (Class15)this.gb.d()) {
+               for(Ground var77 = (Ground)this.gb.b(); var77 != null; var77 = (Ground)this.gb.d()) {
                   var77.g -= var4;
                   var77.h -= var70;
                   if(var77.g < 0 || var77.h < 0 || var77.g >= 104 || var77.h >= 104) {
@@ -14718,7 +14718,7 @@ public class Client extends ScapeApplet {
             this.gK = new MidiPlayer();
          }
 
-         this.E = new Class3(this);
+         this.E = new Overlays(this);
       } catch (Exception var2) {
          var2.printStackTrace();
       }
