@@ -33,7 +33,7 @@ import vscape.overlay.OverlayTemplate;
 import vscape.overlay.Overlays;
 
 import com.runescape.cache.Archive;
-import com.runescape.cache.Class4;
+import com.runescape.cache.SpriteLoader;
 import com.runescape.cache.Index;
 import com.runescape.cache.anim.Animation;
 import com.runescape.cache.anim.Frame;
@@ -41,9 +41,9 @@ import com.runescape.cache.anim.SpotAnimation;
 import com.runescape.cache.def.ActorDefinition;
 import com.runescape.cache.def.ItemDefinition;
 import com.runescape.cache.def.ObjectDefinition;
-import com.runescape.cache.gui.Class71;
-import com.runescape.cache.gui.IndexedImage;
 import com.runescape.cache.gui.RSFont;
+import com.runescape.cache.gui.IndexedImage;
+import com.runescape.cache.gui.TextDrawingArea;
 import com.runescape.cache.gui.Sprite;
 import com.runescape.cache.gui.Widget;
 import com.runescape.data.LinkedList;
@@ -84,7 +84,7 @@ import com.runescape.stream.Class32;
 import com.runescape.utils.ChatMessageCodec;
 import com.runescape.utils.MessageCensor;
 import com.runescape.utils.MouseMonitor;
-import com.runescape.utils.SkillConstants;
+import com.runescape.utils.Skills;
 import com.runescape.utils.StringUtils;
 import com.runescape.var.VarBits;
 import com.runescape.var.Varp;
@@ -502,12 +502,12 @@ public class Client extends RSApplet {
    private String ho;
    private int hp;
    private int hq;
-   private RSFont hr;
-   private RSFont hs;
-   private RSFont ht;
-   public Class71 G;
-   public Class71 H;
-   private Class71 hu;
+   private TextDrawingArea hr;
+   private TextDrawingArea hs;
+   private TextDrawingArea ht;
+   public RSFont G;
+   public RSFont H;
+   private RSFont hu;
    private int hv;
    private int hw;
    private int[] hx;
@@ -851,7 +851,7 @@ public class Client extends RSApplet {
          this.gD[1].a(var2, var3);
          return 15;
       case 4:
-         Class4.a("chaticons", 0).e(var2, var3);
+         SpriteLoader.a("chaticons", 0).e(var2, var3);
          return 13;
       default:
          return 0;
@@ -958,7 +958,7 @@ public class Client extends RSApplet {
       }
 
       if(s == 0) {
-         Class4.a("chat", 4).e(0, 0);
+         SpriteLoader.a("chat", 4).e(0, 0);
          this.aF.b(7, 6);
       }
 
@@ -967,13 +967,13 @@ public class Client extends RSApplet {
       }
 
       if(s != 0 && eL) {
-         Class4.a("chat", 5).e(0, var1 - 1);
+         SpriteLoader.a("chat", 5).e(0, var1 - 1);
          Rasterizer2D.a(13417370, var1 + 6, 506, 129, 200, 7);
          this.aF.b(7, var1 + 6);
       }
 
       if(s != 0) {
-         Class4.a("chat", 6).e(0, r - 22);
+         SpriteLoader.a("chat", 6).e(0, r - 22);
       }
 
       if(s == 0) {
@@ -993,72 +993,72 @@ public class Client extends RSApplet {
       int[] var9 = new int[]{'\uff00', 16776960, 16711680, '\uffff'};
       switch(this.ai) {
       case 0:
-         Class4.a("chat", 1).e(5, var3 + 142);
+         SpriteLoader.a("chat", 1).e(5, var3 + 142);
          break;
       case 1:
-         Class4.a("chat", 1).e(71, var3 + 142);
+         SpriteLoader.a("chat", 1).e(71, var3 + 142);
          break;
       case 2:
-         Class4.a("chat", 1).e(137, var3 + 142);
+         SpriteLoader.a("chat", 1).e(137, var3 + 142);
          break;
       case 3:
-         Class4.a("chat", 1).e(203, var3 + 142);
+         SpriteLoader.a("chat", 1).e(203, var3 + 142);
          break;
       case 4:
-         Class4.a("chat", 1).e(269, var3 + 142);
+         SpriteLoader.a("chat", 1).e(269, var3 + 142);
          break;
       case 5:
-         Class4.a("chat", 1).e(335, var3 + 142);
+         SpriteLoader.a("chat", 1).e(335, var3 + 142);
          break;
       case 6:
-         Class4.a("chat", 1).e(401, var3 + 142);
+         SpriteLoader.a("chat", 1).e(401, var3 + 142);
       }
 
       if(this.ah == this.ai) {
          switch(this.ah) {
          case 0:
-            Class4.a("chat", 2).e(5, var3 + 142);
+            SpriteLoader.a("chat", 2).e(5, var3 + 142);
             break;
          case 1:
-            Class4.a("chat", 2).e(71, var3 + 142);
+            SpriteLoader.a("chat", 2).e(71, var3 + 142);
             break;
          case 2:
-            Class4.a("chat", 2).e(137, var3 + 142);
+            SpriteLoader.a("chat", 2).e(137, var3 + 142);
             break;
          case 3:
-            Class4.a("chat", 2).e(203, var3 + 142);
+            SpriteLoader.a("chat", 2).e(203, var3 + 142);
             break;
          case 4:
-            Class4.a("chat", 2).e(269, var3 + 142);
+            SpriteLoader.a("chat", 2).e(269, var3 + 142);
             break;
          case 5:
-            Class4.a("chat", 2).e(335, var3 + 142);
+            SpriteLoader.a("chat", 2).e(335, var3 + 142);
             break;
          case 6:
-            Class4.a("chat", 2).e(401, var3 + 142);
+            SpriteLoader.a("chat", 2).e(401, var3 + 142);
          }
       } else {
          switch(this.ah) {
          case 0:
-            Class4.a("chat", 0).e(5, var3 + 142);
+            SpriteLoader.a("chat", 0).e(5, var3 + 142);
             break;
          case 1:
-            Class4.a("chat", 0).e(71, var3 + 142);
+            SpriteLoader.a("chat", 0).e(71, var3 + 142);
             break;
          case 2:
-            Class4.a("chat", 0).e(137, var3 + 142);
+            SpriteLoader.a("chat", 0).e(137, var3 + 142);
             break;
          case 3:
-            Class4.a("chat", 0).e(203, var3 + 142);
+            SpriteLoader.a("chat", 0).e(203, var3 + 142);
             break;
          case 4:
-            Class4.a("chat", 0).e(269, var3 + 142);
+            SpriteLoader.a("chat", 0).e(269, var3 + 142);
             break;
          case 5:
-            Class4.a("chat", 0).e(335, var3 + 142);
+            SpriteLoader.a("chat", 0).e(335, var3 + 142);
             break;
          case 6:
-            Class4.a("chat", 0).e(401, var3 + 142);
+            SpriteLoader.a("chat", 0).e(401, var3 + 142);
          }
       }
 
@@ -1075,7 +1075,7 @@ public class Client extends RSApplet {
       this.hr.a(var7[this.f], 296, var6[this.f], s == 0?163:r - 1, true);
       this.hr.a(var9[this.gX], 362, var8[this.gX], s == 0?163:r - 1, true);
       this.hr.a(var7[this.g], 428, var6[this.g], s == 0?163:r - 1, true);
-      RSFont var2 = this.hs;
+      TextDrawingArea var2 = this.hs;
       if(this.hf) {
          this.ht.a(0, this.fq, var1 + 60, 259);
          this.ht.a(128, this.gy + "*", var1 + 80, 259);
@@ -3489,7 +3489,7 @@ public class Client extends RSApplet {
       }
 
       if(s == 0) {
-         Class4.a("tabs", 5).e(0, 0);
+         SpriteLoader.a("tabs", 5).e(0, 0);
          this.aE.b(30, 37);
       }
 
@@ -3497,19 +3497,19 @@ public class Client extends RSApplet {
       int var1 = q >= this.eM?37:74;
       if(s != 0) {
          if(q >= this.eM) {
-            Class4.a("tabs", 6).e(q - 461, r - 36);
+            SpriteLoader.a("tabs", 6).e(q - 461, r - 36);
          } else {
-            Class4.a("tabs", 7).e(q - 241, r - 73);
+            SpriteLoader.a("tabs", 7).e(q - 241, r - 73);
          }
       }
 
       if(this.eK) {
          if(q >= this.eM) {
-            Class4.a("tabs", 8).e(q - 204, r - 310);
+            SpriteLoader.a("tabs", 8).e(q - 204, r - 310);
             Rasterizer2D.a(5260860, r - 303, 190, 260, 100, q - 197);
             this.aE.b(q - 198, r - 303);
          } else {
-            Class4.a("tabs", 8).e(q - 222, r - 346);
+            SpriteLoader.a("tabs", 8).e(q - 222, r - 346);
             Rasterizer2D.a(5260860, r - 339, 190, 260, 100, q - 216);
             this.aE.b(q - 216, r - 339);
          }
@@ -3575,46 +3575,46 @@ public class Client extends RSApplet {
             if(u[C] != -1) {
                switch(C) {
                case 0:
-                  Class4.a("tabs", 0).e(6, 0);
+                  SpriteLoader.a("tabs", 0).e(6, 0);
                   break;
                case 1:
-                  Class4.a("tabs", 4).e(44, 0);
+                  SpriteLoader.a("tabs", 4).e(44, 0);
                   break;
                case 2:
-                  Class4.a("tabs", 4).e(77, 0);
+                  SpriteLoader.a("tabs", 4).e(77, 0);
                   break;
                case 3:
-                  Class4.a("tabs", 4).e(110, 0);
+                  SpriteLoader.a("tabs", 4).e(110, 0);
                   break;
                case 4:
-                  Class4.a("tabs", 4).e(143, 0);
+                  SpriteLoader.a("tabs", 4).e(143, 0);
                   break;
                case 5:
-                  Class4.a("tabs", 4).e(176, 0);
+                  SpriteLoader.a("tabs", 4).e(176, 0);
                   break;
                case 6:
-                  Class4.a("tabs", 1).e(209, 0);
+                  SpriteLoader.a("tabs", 1).e(209, 0);
                   break;
                case 7:
-                  Class4.a("tabs", 2).e(6, 298);
+                  SpriteLoader.a("tabs", 2).e(6, 298);
                   break;
                case 8:
-                  Class4.a("tabs", 4).e(44, 298);
+                  SpriteLoader.a("tabs", 4).e(44, 298);
                   break;
                case 9:
-                  Class4.a("tabs", 4).e(77, 298);
+                  SpriteLoader.a("tabs", 4).e(77, 298);
                   break;
                case 10:
-                  Class4.a("tabs", 4).e(110, 298);
+                  SpriteLoader.a("tabs", 4).e(110, 298);
                   break;
                case 11:
-                  Class4.a("tabs", 4).e(143, 298);
+                  SpriteLoader.a("tabs", 4).e(143, 298);
                   break;
                case 12:
-                  Class4.a("tabs", 4).e(176, 298);
+                  SpriteLoader.a("tabs", 4).e(176, 298);
                   break;
                case 13:
-                  Class4.a("tabs", 3).e(209, 298);
+                  SpriteLoader.a("tabs", 3).e(209, 298);
                }
             }
          } else if(s != 0) {
@@ -3622,91 +3622,91 @@ public class Client extends RSApplet {
                if(u[C] != -1 && this.eK) {
                   switch(C) {
                   case 0:
-                     Class4.a("tabs", 0).e(q - 241, r - 73);
+                     SpriteLoader.a("tabs", 0).e(q - 241, r - 73);
                      break;
                   case 1:
-                     Class4.a("tabs", 4).e(q - 202, r - 73);
+                     SpriteLoader.a("tabs", 4).e(q - 202, r - 73);
                      break;
                   case 2:
-                     Class4.a("tabs", 4).e(q - 170, r - 73);
+                     SpriteLoader.a("tabs", 4).e(q - 170, r - 73);
                      break;
                   case 3:
-                     Class4.a("tabs", 4).e(q - 138, r - 73);
+                     SpriteLoader.a("tabs", 4).e(q - 138, r - 73);
                      break;
                   case 4:
-                     Class4.a("tabs", 4).e(q - 104, r - 73);
+                     SpriteLoader.a("tabs", 4).e(q - 104, r - 73);
                      break;
                   case 5:
-                     Class4.a("tabs", 4).e(q - 71, r - 73);
+                     SpriteLoader.a("tabs", 4).e(q - 71, r - 73);
                      break;
                   case 6:
-                     Class4.a("tabs", 1).e(q - 38, r - 73);
+                     SpriteLoader.a("tabs", 1).e(q - 38, r - 73);
                      break;
                   case 7:
-                     Class4.a("tabs", 2).e(q - 241, r - 37);
+                     SpriteLoader.a("tabs", 2).e(q - 241, r - 37);
                      break;
                   case 8:
-                     Class4.a("tabs", 4).e(q - 202, r - 37);
+                     SpriteLoader.a("tabs", 4).e(q - 202, r - 37);
                      break;
                   case 9:
-                     Class4.a("tabs", 4).e(q - 170, r - 37);
+                     SpriteLoader.a("tabs", 4).e(q - 170, r - 37);
                      break;
                   case 10:
-                     Class4.a("tabs", 4).e(q - 138, r - 37);
+                     SpriteLoader.a("tabs", 4).e(q - 138, r - 37);
                      break;
                   case 11:
-                     Class4.a("tabs", 4).e(q - 104, r - 37);
+                     SpriteLoader.a("tabs", 4).e(q - 104, r - 37);
                      break;
                   case 12:
-                     Class4.a("tabs", 4).e(q - 71, r - 37);
+                     SpriteLoader.a("tabs", 4).e(q - 71, r - 37);
                      break;
                   case 13:
-                     Class4.a("tabs", 3).e(q - 38, r - 37);
+                     SpriteLoader.a("tabs", 3).e(q - 38, r - 37);
                   }
                }
             } else if(q >= this.eM && u[C] != -1 && this.eK) {
                switch(C) {
                case 0:
-                  Class4.a("tabs", 4).e(q - 462, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 462, r - 36);
                   break;
                case 1:
-                  Class4.a("tabs", 4).e(q - 429, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 429, r - 36);
                   break;
                case 2:
-                  Class4.a("tabs", 4).e(q - 396, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 396, r - 36);
                   break;
                case 3:
-                  Class4.a("tabs", 4).e(q - 363, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 363, r - 36);
                   break;
                case 4:
-                  Class4.a("tabs", 4).e(q - 330, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 330, r - 36);
                   break;
                case 5:
-                  Class4.a("tabs", 4).e(q - 297, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 297, r - 36);
                   break;
                case 6:
-                  Class4.a("tabs", 4).e(q - 264, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 264, r - 36);
                   break;
                case 7:
-                  Class4.a("tabs", 4).e(q - 231, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 231, r - 36);
                   break;
                case 8:
-                  Class4.a("tabs", 4).e(q - 198, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 198, r - 36);
                   break;
                case 9:
-                  Class4.a("tabs", 4).e(q - 165, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 165, r - 36);
                   break;
                case 10:
-                  Class4.a("tabs", 4).e(q - 132, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 132, r - 36);
                   break;
                case 11:
-                  Class4.a("tabs", 4).e(q - 99, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 99, r - 36);
                   break;
                case 12:
-                  Class4.a("tabs", 4).e(q - 66, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 66, r - 36);
                   break;
                case 13:
-                  Class4.a("tabs", 4).e(q - 33, r - 36);
+                  SpriteLoader.a("tabs", 4).e(q - 33, r - 36);
                }
             }
          }
@@ -3722,7 +3722,7 @@ public class Client extends RSApplet {
 
             for(var5 = 0; var5 < 14; ++var5) {
                if(u[var7[var5]] != -1 && (var6.dZ != var7[var5] || x % 20 < 10)) {
-                  Class4.a("sideicons", var5).e(var8[var5], var4[var5]);
+                  SpriteLoader.a("sideicons", var5).e(var8[var5], var4[var5]);
                }
             }
          } else if(s != 0) {
@@ -3732,7 +3732,7 @@ public class Client extends RSApplet {
 
                for(var5 = 0; var5 < 14; ++var5) {
                   if(u[var7[var5]] != -1 && (var6.dZ != var7[var5] || x % 20 < 10)) {
-                     Class4.a("sideicons", var5).e(q - var8[var5], r - var4[var5]);
+                     SpriteLoader.a("sideicons", var5).e(q - var8[var5], r - var4[var5]);
                   }
                }
             } else if(q >= this.eM) {
@@ -3741,7 +3741,7 @@ public class Client extends RSApplet {
 
                for(var5 = 0; var5 < 14; ++var5) {
                   if(u[var7[var5]] != -1 && (var6.dZ != var7[var5] || x % 20 < 10)) {
-                     Class4.a("sideicons", var5).e(q - var8[var5], r - var4[var5]);
+                     SpriteLoader.a("sideicons", var5).e(q - var8[var5], r - var4[var5]);
                   }
                }
             }
@@ -4054,15 +4054,15 @@ public class Client extends RSApplet {
                   Settings.a();
                }
 
-               if(super.U == 1 && this.b(var2 - 100, var3 - 64, var2 + Class4.a("login", 1).b / 2, var3 - 38)) {
+               if(super.U == 1 && this.b(var2 - 100, var3 - 64, var2 + SpriteLoader.a("login", 1).b / 2, var3 - 38)) {
                   this.gC = 0;
                }
 
-               if(super.U == 1 && this.b(var2 - 100, var3 - 19, var2 + Class4.a("login", 1).b / 2, var3 + 7)) {
+               if(super.U == 1 && this.b(var2 - 100, var3 - 19, var2 + SpriteLoader.a("login", 1).b / 2, var3 + 7)) {
                   this.gC = 1;
                }
 
-               if(super.U == 1 && this.b(var2 - 80, var3 + 38, var2 + Class4.a("login", 2).b / 2, var3 + 64)) {
+               if(super.U == 1 && this.b(var2 - 80, var3 + 38, var2 + SpriteLoader.a("login", 2).b / 2, var3 + 64)) {
                   if(y.length() > 0 && z.length() > 0) {
                      this.dN = 0;
                      this.a(y, z, false);
@@ -7914,7 +7914,7 @@ public class Client extends RSApplet {
          this.fT = new ProducingGraphicsBuffer(516, 165, this.e());
          this.fR = new ProducingGraphicsBuffer(249, 168, this.e());
          Rasterizer2D.d();
-         Class4.a("map", 0).e(0, 0);
+         SpriteLoader.a("map", 0).e(0, 0);
          this.fQ = new ProducingGraphicsBuffer(250, 335, this.e());
          this.fS = new ProducingGraphicsBuffer(512, 334, this.e());
          Rasterizer2D.d();
@@ -9523,13 +9523,13 @@ public class Client extends RSApplet {
 
       try {
          this.dY = this.a(1, "title screen", "title", this.eN[1], 25);
-         this.hr = new RSFont(false, "p11_full", this.dY);
-         this.hs = new RSFont(false, "p12_full", this.dY);
-         this.ht = new RSFont(false, "b12_full", this.dY);
-         RSFont var26 = new RSFont(true, "q8_full", this.dY);
-         this.G = new Class71(false, "p11_full", this.dY);
-         this.H = new Class71(false, "p12_full", this.dY);
-         this.hu = new Class71(true, "b12_full", this.dY);
+         this.hr = new TextDrawingArea(false, "p11_full", this.dY);
+         this.hs = new TextDrawingArea(false, "p12_full", this.dY);
+         this.ht = new TextDrawingArea(false, "b12_full", this.dY);
+         TextDrawingArea var26 = new TextDrawingArea(true, "q8_full", this.dY);
+         this.G = new RSFont(false, "p11_full", this.dY);
+         this.H = new RSFont(false, "p12_full", this.dY);
+         this.hu = new RSFont(true, "b12_full", this.dY);
          this.x();
          this.w();
          Archive var28 = this.a(2, "config", "config", this.eN[2], 30);
@@ -9537,7 +9537,7 @@ public class Client extends RSApplet {
          Archive var4 = this.a(4, "2d graphics", "media", this.eN[4], 40);
 
          try {
-            Class4.b();
+            SpriteLoader.b();
          } catch (Exception var15) {
             System.out.println("Unable to load sprite cache.");
          }
@@ -9667,7 +9667,7 @@ public class Client extends RSApplet {
          this.es = new Sprite(var4, "mapdots", 2);
          this.et = new Sprite(var4, "mapdots", 3);
          this.eu = new Sprite(var4, "mapdots", 4);
-         this.ev = Class4.a("clanchat", 7);
+         this.ev = SpriteLoader.a("clanchat", 7);
          this.dD = new Sprite(var4, "scrollbar", 0);
          this.dE = new Sprite(var4, "scrollbar", 1);
 
@@ -9718,7 +9718,7 @@ public class Client extends RSApplet {
          byte[] var35 = var7.a("sounds.dat");
          Track.a(new Buffer(var35));
          this.a(95, (String)"Unpacking interfaces");
-         RSFont[] var36 = new RSFont[]{this.hr, this.hs, this.ht, var26};
+         TextDrawingArea[] var36 = new TextDrawingArea[]{this.hr, this.hs, this.ht, var26};
          Widget.a(var30, var36, var4);
          this.a(100, (String)"Preparing game engine");
 
@@ -10683,7 +10683,7 @@ public class Client extends RSApplet {
                if(eL) {
                   Client var35 = var22;
                   if(var22.gq != 0) {
-                     RSFont var34 = var22.hs;
+                     TextDrawingArea var34 = var22.hs;
                      var12 = 0;
                      if(!var22.fe.isEmpty()) {
                         ++var12;
@@ -11045,7 +11045,7 @@ public class Client extends RSApplet {
 
             int var2;
             for(var2 = 0; var2 <= var0; ++var2) {
-               Widget.e[var2 + '\uc353'].b = Class4.a("bank", 14);
+               Widget.e[var2 + '\uc353'].b = SpriteLoader.a("bank", 14);
                Widget.e[var2 + '\uc353'].n = "Click here to select tab " + (var2 + 1);
             }
 
@@ -11055,15 +11055,15 @@ public class Client extends RSApplet {
             }
 
             if(var0 != 8) {
-               Widget.e[var0 + '\uc353'].b = Class4.a("bank", 15);
+               Widget.e[var0 + '\uc353'].b = SpriteLoader.a("bank", 15);
                Widget.e[var0 + '\uc353'].n = "Drag an item here to create vscape new tab";
             }
 
             if(var1 > 0) {
-               Widget.e[var1 + '\uc352'].b = Class4.a("bank", 13);
-               Widget.e['\uc352'].b = Class4.a("bank", 12);
+               Widget.e[var1 + '\uc352'].b = SpriteLoader.a("bank", 13);
+               Widget.e['\uc352'].b = SpriteLoader.a("bank", 12);
             } else {
-               Widget.e['\uc352'].b = Class4.a("bank", 11);
+               Widget.e['\uc352'].b = SpriteLoader.a("bank", 11);
             }
 
             Widget.e['\uc365'].M = "0";
@@ -11373,7 +11373,7 @@ public class Client extends RSApplet {
                               var16 -= 10000;
                               var27 = "";
                               int[] var33 = new int[]{0, 3, 14, 2, 16, 13, 1, 15, 10, 4, 17, 7, 5, 12, 11, 6, 9, 8, 20, 18, 19};
-                              var27 = var27 + StringUtils.c(SkillConstants.a[var33[var16]]) + ": " + this.bZ[var33[var16]] + "/" + this.dQ[var33[var16]] + "\\n";
+                              var27 = var27 + StringUtils.c(Skills.a[var33[var16]]) + ": " + this.bZ[var33[var16]] + "/" + this.dQ[var33[var16]] + "\\n";
                               var27 = var27 + "Current XP: " + this.b.format((long)this.bp[var33[var16]]) + "\\n";
                               if(this.dQ[var33[var16]] < 99) {
                                  var27 = var27 + "Next level: " + this.b.format((long)t(this.dQ[var33[var16]] + 1)) + "\\n";
@@ -11409,19 +11409,19 @@ public class Client extends RSApplet {
                                  switch(var19) {
                                  case 0:
                                     if(this.c(var27) && !var27.equalsIgnoreCase(t.ai)) {
-                                       var18.b = var18.V = Class4.a("clanchat", 0);
+                                       var18.b = var18.V = SpriteLoader.a("clanchat", 0);
                                     } else {
                                        var18.b = var18.V = null;
                                     }
                                     break;
                                  case 1:
-                                    var18.b = var18.V = Class4.a("clanchat", 1);
+                                    var18.b = var18.V = SpriteLoader.a("clanchat", 1);
                                     break;
                                  case 2:
-                                    var18.b = var18.V = Class4.a("clanchat", 3);
+                                    var18.b = var18.V = SpriteLoader.a("clanchat", 3);
                                     break;
                                  case 3:
-                                    var18.b = var18.V = Class4.a("clanchat", 2);
+                                    var18.b = var18.V = SpriteLoader.a("clanchat", 2);
                                  }
 
                                  var13.M = StringUtils.c(var27);
@@ -11595,7 +11595,7 @@ public class Client extends RSApplet {
                         Rasterizer2D.b(var12, var13.ab, 256 - (var13.R & 255), var14, var13.m, var11);
                      }
                   } else {
-                     RSFont var24;
+                     TextDrawingArea var24;
                      if(var13.X == 4) {
                         var24 = var13.H;
                         String var26 = var13.M;
@@ -11746,7 +11746,7 @@ public class Client extends RSApplet {
                         } else if(var13.X == 8 && (this.hM == var13.O || this.hJ == var13.O || this.hK == var13.O) && this.hN == 0 && !this.bC) {
                            var23 = 0;
                            var14 = 0;
-                           RSFont var43 = this.hs;
+                           TextDrawingArea var43 = this.hs;
 
                            for(var28 = var13.M; var28.length() > 0; var14 += var43.a + 1) {
                               if(var28.indexOf("%") != -1) {
@@ -12384,7 +12384,7 @@ public class Client extends RSApplet {
                int var13;
                if(var5 == 9) {
                   for(var13 = 0; var13 < 25; ++var13) {
-                     if(SkillConstants.b[var13]) {
+                     if(Skills.b[var13]) {
                         var6 += this.dQ[var13];
                      }
                   }
@@ -12538,11 +12538,11 @@ public class Client extends RSApplet {
 
       if(this.dB == 2) {
          if(s == 0) {
-            Class4.a("map", 2).e(0, 0);
+            SpriteLoader.a("map", 2).e(0, 0);
          }
 
          if(s != 0) {
-            Class4.a("map", 4).e(q - 238, 3);
+            SpriteLoader.a("map", 4).e(q - 238, 3);
          }
 
          this.fr.a(33, this.gh, this.ec, 256, this.cN, 25, s == 0?4:7, s == 0?29:q + 34 - 5 - 238, 33, 25);
@@ -12658,14 +12658,14 @@ public class Client extends RSApplet {
          }
 
          if(s != 0) {
-            Class4.a("map", 3).e(q - 238, 3);
+            SpriteLoader.a("map", 3).e(q - 238, 3);
             this.fr.a(33, this.gh, this.ec, 256, this.cN, 25, s == 0?4:7, s == 0?29:q + 34 - 5 - 238, 33, 25);
          }
 
          Rasterizer2D.a(3, (s == 0?9:12) + 74, s == 0?125:q + 130 - 5 - 238, 16777215, 3);
          if(s == 0) {
-            Class4.a("map", 0).e(0, 0);
-            Class4.a("map", 1).a(33, this.gh, this.ec, 256, this.cN, 25, 4, 29, 33, 25);
+            SpriteLoader.a("map", 0).e(0, 0);
+            SpriteLoader.a("map", 1).a(33, this.gh, this.ec, 256, this.cN, 25, 4, 29, 33, 25);
          }
 
          this.V();
@@ -12719,15 +12719,15 @@ public class Client extends RSApplet {
          double var3 = (double)(var2 = (int)((double)var1.fF / 100.0D * 100.0D)) / 100.0D;
          var5 = s == 0?190:q - 250;
          int var6 = s == 0?80:110;
-         Class4.a("orbs", s == 0?5:4).e(var5, var6);
-         Class4.a("orbs", var1.at?9:8).e(var5 + (s == 0?3:27), var6 + 3);
-         Sprite var7 = Class4.a("orbs", 7);
+         SpriteLoader.a("orbs", s == 0?5:4).e(var5, var6);
+         SpriteLoader.a("orbs", var1.at?9:8).e(var5 + (s == 0?3:27), var6 + 3);
+         Sprite var7 = SpriteLoader.a("orbs", 7);
          var8 = 27 - (int)(var3 * 27.0D);
          var7.c = var8;
          Sprite.j = var8;
          var7.e(var5 + (s == 0?3:27), var6 + 3);
          var1.hr.a(v(var2), var5 + (s == 0?41:14), String.valueOf(var2), var6 + 26, true);
-         Class4.a("orbs", var1.at?11:10).e(var5 + (s == 0?9:32), var6 + 7);
+         SpriteLoader.a("orbs", var1.at?11:10).e(var5 + (s == 0?9:32), var6 + 7);
       } catch (Exception var15) {
          ;
       }
@@ -12744,15 +12744,15 @@ public class Client extends RSApplet {
          var10 = (double)(var9 = (int)((double)var2 / (double)var8 * 100.0D)) / 100.0D;
          var16 = s == 0?190:q - 260;
          var8 = s == 0?45:75;
-         Class4.a("orbs", s == 0?5:4).e(var16, var8);
-         Class4.a("orbs", 1).e(var16 + (s == 0?3:27), var8 + 3);
-         var12 = Class4.a("orbs", 7);
+         SpriteLoader.a("orbs", s == 0?5:4).e(var16, var8);
+         SpriteLoader.a("orbs", 1).e(var16 + (s == 0?3:27), var8 + 3);
+         var12 = SpriteLoader.a("orbs", 7);
          var5 = 27 - (int)(var10 * 27.0D);
          var12.c = var5;
          Sprite.j = var5;
          var12.e(var16 + (s == 0?3:27), var8 + 3);
          var1.hr.a(v(var9), var16 + (s == 0?41:14), String.valueOf(var2), var8 + 26, true);
-         Class4.a("orbs", 3).e(var16 + (s == 0?7:30), var8 + 7);
+         SpriteLoader.a("orbs", 3).e(var16 + (s == 0?7:30), var8 + 7);
       } catch (Exception var14) {
          ;
       }
@@ -12765,15 +12765,15 @@ public class Client extends RSApplet {
          var10 = (double)(var9 = (int)((double)var2 / (double)var8 * 100.0D)) / 100.0D;
          var16 = s == 0?180:q - 250;
          var8 = s == 0?10:40;
-         Class4.a("orbs", s == 0?5:4).e(var16, var8);
-         Class4.a("orbs", 0).e(var16 + (s == 0?3:27), var8 + 3);
-         var12 = Class4.a("orbs", 7);
+         SpriteLoader.a("orbs", s == 0?5:4).e(var16, var8);
+         SpriteLoader.a("orbs", 0).e(var16 + (s == 0?3:27), var8 + 3);
+         var12 = SpriteLoader.a("orbs", 7);
          var5 = 27 - (int)(var10 * 27.0D);
          var12.c = var5;
          Sprite.j = var5;
          var12.e(var16 + (s == 0?3:27), var8 + 3);
          var1.hr.a(v(var9), var16 + (s == 0?41:14), String.valueOf(var2), var8 + 26, true);
-         Class4.a("orbs", 2).e(var16 + (s == 0?10:33), var8 + 10);
+         SpriteLoader.a("orbs", 2).e(var16 + (s == 0?10:33), var8 + 10);
       } catch (Exception var13) {
          ;
       }
@@ -12862,35 +12862,35 @@ public class Client extends RSApplet {
       }
 
       if(v) {
-         Class4.a("login", 6).e(q - 52, 10);
+         SpriteLoader.a("login", 6).e(q - 52, 10);
       } else {
-         Class4.a("login", 7).e(q - 52, 10);
+         SpriteLoader.a("login", 7).e(q - 52, 10);
       }
 
-      Class4.a("login", 0).a(this.ar - 145, this.as - 135);
+      SpriteLoader.a("login", 0).a(this.ar - 145, this.as - 135);
       if(this.a(this.ar - 110, this.as - 64, this.ar + 115, this.as - 38)) {
-         Class4.a("login", 1).e(this.ar - 110, this.as - 64);
+         SpriteLoader.a("login", 1).e(this.ar - 110, this.as - 64);
       }
 
       if(this.a(this.ar - 110, this.as - 19, this.ar + 115, this.as + 8)) {
-         Class4.a("login", 1).e(this.ar - 110, this.as - 17);
+         SpriteLoader.a("login", 1).e(this.ar - 110, this.as - 17);
       }
 
       if(this.a(this.ar - 90, this.as + 38, this.ar + 99, this.as + 64)) {
-         Class4.a("login", 2).e(this.ar - 90, this.as + 39);
+         SpriteLoader.a("login", 2).e(this.ar - 90, this.as + 39);
       }
 
-      RSFont var1 = this.hs;
+      TextDrawingArea var1 = this.hs;
       this.ht.a(true, this.ar - 105, 15970623, y + (this.gC == 0 & x % 40 < 20?"|":""), this.as - 43);
       this.ht.a(true, this.ar - 105, 15970623, StringUtils.d(z) + (this.gC == 1 & x % 40 < 20?"|":""), this.as + 5);
       this.ht.a(true, this.ar - var1.a(this.hn) / 2 - (this.hn.length() > 25?16:(this.hn.length() > 20?14:(this.hn.length() > 15?12:10))), 15970623, this.hn, this.as + 90);
       this.ht.a(true, this.ar - var1.a(this.ho) / 2 - (this.ho.length() > 25?16:(this.ho.length() > 20?14:(this.ho.length() > 15?12:10))), 15970623, this.ho, this.as + 113);
       if(c) {
-         Class4.a("login", 4).e(this.ar - 108, this.as + 12);
+         SpriteLoader.a("login", 4).e(this.ar - 108, this.as + 12);
       } else {
-         Class4.a("login", 3).e(this.ar - 108, this.as + 12);
+         SpriteLoader.a("login", 3).e(this.ar - 108, this.as + 12);
          if(this.a(this.ar - 108, this.as + 12, this.ar - 80, this.as + 24)) {
-            Class4.a("login", 5).e(this.ar - 108, this.as + 12);
+            SpriteLoader.a("login", 5).e(this.ar - 108, this.as + 12);
          }
       }
 
@@ -14714,7 +14714,7 @@ public class Client extends RSApplet {
       this.gJ = 256;
 
       try {
-         if(Class4.a()) {
+         if(SpriteLoader.a()) {
             this.gK = new MidiPlayer();
          }
 

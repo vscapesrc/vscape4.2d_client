@@ -1,7 +1,7 @@
 package com.runescape.cache.gui;
 import com.runescape.Client;
 import com.runescape.cache.Archive;
-import com.runescape.cache.Class4;
+import com.runescape.cache.SpriteLoader;
 import com.runescape.cache.anim.Frame;
 import com.runescape.cache.def.ActorDefinition;
 import com.runescape.cache.def.ObjectDefinition;
@@ -45,7 +45,7 @@ public final class Widget {
    public int[] E;
    public int[] F;
    public boolean G;
-   public RSFont H;
+   public TextDrawingArea H;
    public int I;
    public int[] J;
    public int K;
@@ -85,7 +85,7 @@ public final class Widget {
       this.P[var2] = var3;
    }
 
-   public static void a(Archive var0, RSFont[] var1, Archive var2) {
+   public static void a(Archive var0, TextDrawingArea[] var1, Archive var2) {
       ai = new Cache('\uc350');
       Buffer var9 = new Buffer(var0.a("data"));
       int var3 = -1;
@@ -207,7 +207,7 @@ public final class Widget {
                   }
                }
 
-               RSFont[] var13 = var1;
+               TextDrawingArea[] var13 = var1;
                var14 = b(25000);
                a(8, (Widget)var14);
                a(25001, "Clan Chat", var1, 1, 16751360, true, true);
@@ -626,8 +626,8 @@ public final class Widget {
       var4.g = 0;
       var4.R = 0;
       var4.v = 52;
-      var4.b = Class4.a(var1, var2);
-      var4.V = Class4.a(var1, var2);
+      var4.b = SpriteLoader.a(var1, var2);
+      var4.V = SpriteLoader.a(var1, var2);
       var4.m = var4.b.b;
       var4.ab = var4.V.c;
       var4.n = var3;
@@ -642,7 +642,7 @@ public final class Widget {
       return var1;
    }
 
-   private static void a(int var0, String var1, RSFont[] var2, int var3, int var4, boolean var5, boolean var6) {
+   private static void a(int var0, String var1, TextDrawingArea[] var2, int var3, int var4, boolean var5, boolean var6) {
       Widget var7;
       (var7 = b(var0)).B = var0;
       var7.O = var0;
@@ -664,7 +664,7 @@ public final class Widget {
       var7.D = 0;
    }
 
-   private static void a(int var0, String var1, int var2, boolean var3, boolean var4, int var5, RSFont[] var6, int var7) {
+   private static void a(int var0, String var1, int var2, boolean var3, boolean var4, int var5, TextDrawingArea[] var6, int var7) {
       Widget var8;
       (var8 = a(var0)).B = var0;
       var8.O = var0;
@@ -702,8 +702,8 @@ public final class Widget {
       var12.s[0][0] = 5;
       var12.s[0][1] = var11;
       var12.s[0][2] = 0;
-      var12.b = Class4.a(var2, var3);
-      var12.V = Class4.a(var4, var5);
+      var12.b = SpriteLoader.a(var2, var3);
+      var12.V = SpriteLoader.a(var4, var5);
       var12.n = var8;
    }
 
@@ -716,8 +716,8 @@ public final class Widget {
       var3.g = 0;
       var3.R = 0;
       var3.v = 52;
-      var3.b = Class4.a(var1, var2);
-      var3.V = Class4.a(var1, var2);
+      var3.b = SpriteLoader.a(var1, var2);
+      var3.V = SpriteLoader.a(var1, var2);
       var3.m = 512;
       var3.ab = 334;
    }
@@ -731,8 +731,8 @@ public final class Widget {
       var9.g = var6;
       var9.R = 0;
       var9.v = var7;
-      var9.b = Class4.a(var1, var2);
-      var9.V = Class4.a(var1, var2);
+      var9.b = SpriteLoader.a(var1, var2);
+      var9.V = SpriteLoader.a(var1, var2);
       var9.m = var3;
       var9.ab = var4;
       var9.n = var5;
@@ -760,8 +760,8 @@ public final class Widget {
       var7.ab = 334;
       var7.R = 0;
       var7.v = 52;
-      var7.b = Class4.a(var1, var2);
-      var7.V = Class4.a(var1, var2);
+      var7.b = SpriteLoader.a(var1, var2);
+      var7.V = SpriteLoader.a(var1, var2);
       var6.c(1);
       var6.a(0, var5, 0, 0);
    }

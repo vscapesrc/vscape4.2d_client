@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import com.runescape.cache.gui.Sprite;
 
-public final class CustomSprites {
+public final class SpriteArchive {
    public String a;
    public int b;
    public Sprite[] c = null;
 
-   public CustomSprites(String var1) {
+   public SpriteArchive(String var1) {
       this.a = var1;
    }
 

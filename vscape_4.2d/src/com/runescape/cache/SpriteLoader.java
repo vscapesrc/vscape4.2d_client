@@ -6,13 +6,13 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel.MapMode;
 import java.util.zip.GZIPInputStream;
 
-import vscape.content.CustomSprites;
+import vscape.content.SpriteArchive;
 
 import com.runescape.cache.gui.Sprite;
 import com.runescape.sign.SignLink;
 import com.runescape.stream.Buffer;
 
-public class Class4 {
+public class SpriteLoader {
    byte[] a;
    int b;
    int c;
@@ -51,7 +51,7 @@ public class Class4 {
    final int[][] J = new int[6][258];
    final int[] K = new int[6];
    int L;
-   public static CustomSprites[] M;
+   public static SpriteArchive[] M;
 
    public static byte[] a(String var0) {
       try {
@@ -80,8 +80,30 @@ public class Class4 {
    }
 
    public static boolean a() {
-      // $FF: Couldn't be decompiled
-	   return false;
+	   /*javax.sound.sampled.Mixer.Info ainfo[];
+       if((ainfo = AudioSystem.getMixerInfo()).length <= 0)
+           return false;
+       javax.sound.sampled.Mixer.Info ainfo1[];
+       int i1;
+       int j1;
+       i1 = (ainfo1 = ainfo).length;
+       j1 = 0;
+       while(j1 < i1) 
+       {
+           Object obj;
+           if(((Mixer) (obj = AudioSystem.getMixer(((javax.sound.sampled.Mixer.Info) (obj = ainfo1[j1]))))).isLineSupported(javax.sound.sampled.Port.Info.SPEAKER) || ((Mixer) (obj)).isLineSupported(javax.sound.sampled.Port.Info.HEADPHONE))
+               return true;
+           j1++;
+       }
+      
+       goto _L1
+       JVM INSTR dup ;
+       Exception exception;
+       exception;
+       printStackTrace();
+_L1:
+       return false;*/
+	   return true;
    }
 
    public static void b() {
@@ -92,14 +114,14 @@ public class Class4 {
          DataInputStream var7 = new DataInputStream(new GZIPInputStream(new ByteArrayInputStream(var1.a)));
          int var2 = var6.readInt();
          if(M == null) {
-            M = new CustomSprites[var2];
+            M = new SpriteArchive[var2];
          }
 
          for(int var3 = 0; var3 < var2; ++var3) {
             byte[] var4 = new byte[var6.readInt()];
             var6.readFully(var4);
             if(M[var3] == null) {
-               M[var3] = new CustomSprites(new String(var4));
+               M[var3] = new SpriteArchive(new String(var4));
             }
 
             M[var3].a(var6, var7);
@@ -114,18 +136,18 @@ public class Class4 {
 
    public static Sprite a(String var0, int var1) {
       var0 = var0;
-      CustomSprites[] var2 = M;
+      SpriteArchive[] var2 = M;
       int var3 = M.length;
       int var4 = 0;
 
-      CustomSprites var10000;
+      SpriteArchive var10000;
       while(true) {
          if(var4 >= var3) {
             var10000 = null;
             break;
          }
 
-         CustomSprites var5;
+         SpriteArchive var5;
          if((var5 = var2[var4]).a.equalsIgnoreCase(var0)) {
             var10000 = var5;
             break;
@@ -134,7 +156,7 @@ public class Class4 {
          ++var4;
       }
 
-      CustomSprites var6 = var10000;
+      SpriteArchive var6 = var10000;
       return var10000 != null && var1 >= 0 && var1 <= var6.b?var6.c[var1]:null;
    }
 }

@@ -1,9 +1,9 @@
 package com.runescape.cache;
 public final class BZip2Decompressor {
-   private static final Class4 a = new Class4();
+   private static final SpriteLoader a = new SpriteLoader();
 
    public static int a(byte[] var0, int var1, byte[] var2, int var3, int var4) {
-      Class4 var5 = a;
+      SpriteLoader var5 = a;
       synchronized(a) {
          a.a = var2;
          a.b = var4;
@@ -18,14 +18,14 @@ public final class BZip2Decompressor {
          a.i = 0;
          a.j = 0;
          a.q = 0;
-         Class4 var18 = a;
+         SpriteLoader var18 = a;
          boolean var19 = false;
          Object var21 = null;
-         Class4 var24 = null;
+         SpriteLoader var24 = null;
          Object var6 = null;
          var18.p = 1;
-         if(Class4.x == null) {
-            Class4.x = new int[var18.p * 100000];
+         if(SpriteLoader.x == null) {
+            SpriteLoader.x = new int[var18.p * 100000];
          }
 
          boolean var10000 = true;
@@ -307,7 +307,7 @@ public final class BZip2Decompressor {
                      }
 
                      ++var18.u[var18.B[var34 & 255] & 255];
-                     Class4.x[var42] = var18.B[var34 & 255] & 255;
+                     SpriteLoader.x[var42] = var18.B[var34 & 255] & 255;
                      ++var42;
                      if(var33 == 0) {
                         ++var31;
@@ -363,7 +363,7 @@ public final class BZip2Decompressor {
                      var43 = var18.B[var18.C[var18.D[0]] & 255];
 
                      for(var18.u[var43 & 255] += var40; var40 > 0; --var40) {
-                        Class4.x[var42] = var43 & 255;
+                        SpriteLoader.x[var42] = var43 & 255;
                         ++var42;
                      }
                   }
@@ -382,14 +382,14 @@ public final class BZip2Decompressor {
                }
 
                for(var13 = 0; var13 < var42; ++var13) {
-                  var12 = (byte)Class4.x[var13];
-                  Class4.x[var18.w[var12 & 255]] |= var13 << 8;
+                  var12 = (byte)SpriteLoader.x[var13];
+                  SpriteLoader.x[var18.w[var12 & 255]] |= var13 << 8;
                   ++var18.w[var12 & 255];
                }
 
-               var18.s = Class4.x[var18.r] >> 8;
+               var18.s = SpriteLoader.x[var18.r] >> 8;
                var18.v = 0;
-               var18.s = Class4.x[var18.s];
+               var18.s = SpriteLoader.x[var18.s];
                var18.t = (byte)var18.s;
                var18.s >>= 8;
                ++var18.v;
@@ -398,7 +398,7 @@ public final class BZip2Decompressor {
                var33 = var18.l;
                var42 = var18.v;
                var13 = var18.t;
-               int[] var44 = Class4.x;
+               int[] var44 = SpriteLoader.x;
                var11 = var18.s;
                byte[] var45 = var18.f;
                var7 = var18.g;
@@ -509,7 +509,7 @@ public final class BZip2Decompressor {
                var18.l = var33;
                var18.v = var42;
                var18.t = var13;
-               Class4.x = var44;
+               SpriteLoader.x = var44;
                var18.s = var11;
                var18.f = var45;
                var18.g = var7;
@@ -528,7 +528,7 @@ public final class BZip2Decompressor {
       }
    }
 
-   private static int a(int var0, Class4 var1) {
+   private static int a(int var0, SpriteLoader var1) {
       while(var1.o < var0) {
          var1.n = var1.n << 8 | var1.a[var1.b] & 255;
          var1.o += 8;

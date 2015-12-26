@@ -1,20 +1,52 @@
 package com.runescape.cache.gui;
-import java.util.Random;
+import java.awt.Color;
 
 import com.runescape.cache.Archive;
 import com.runescape.graphics.Rasterizer2D;
+import com.runescape.graphics.Rasterizer2D_Sub1;
 import com.runescape.stream.Buffer;
 
 public final class RSFont extends Rasterizer2D {
-   private byte[][] b = new byte[256][];
+   private int a = 0;
+   private int[] b = new int[256];
    private int[] c = new int[256];
    private int[] d = new int[256];
    private int[] e = new int[256];
-   private int[] f = new int[256];
+   private byte[][] f = new byte[256][];
    private int[] g = new int[256];
-   public int a;
-   private Random r = new Random();
-   private boolean s = false;
+   private static String r = "nbsp";
+   private static String s = "trans=";
+   private static String t = "shad";
+   private static String u = "/shad";
+   private static String v = "gt";
+   private static String w = "/str";
+   private static String x = "euro";
+   private static String y = "col=";
+   private static String z = "br";
+   private static String A = "str=";
+   private static String B = "/col";
+   private static String C = "img=";
+   private static String D = "/u";
+   private static String E = "str";
+   private static String F = "shad=";
+   private static String G = "lt";
+   private static String H = "shy";
+   private static String I = "copy";
+   private static String J = "/trans";
+   private static String K = "times";
+   private static String L = "u=";
+   private static String M = "u";
+   private static String N = "reg";
+   private static int O = 0;
+   private static int P = -1;
+   private static int Q = -1;
+   private static int R = 256;
+   private static int S = 0;
+   private static int T = -1;
+   private static int U = -1;
+   private static int V = 0;
+   private static int W = 256;
+   private static int X = 0;
 
    public RSFont(boolean var1, String var2, Archive var3) {
       Buffer var9 = new Buffer(var3.a(var2 + ".dat"));
@@ -26,21 +58,21 @@ public final class RSFont extends Rasterizer2D {
       }
 
       for(var4 = 0; var4 < 256; ++var4) {
-         this.e[var4] = var10.e();
-         this.f[var4] = var10.e();
-         int var5 = this.c[var4] = var10.g();
-         int var6 = this.d[var4] = var10.g();
+         this.d[var4] = var10.e();
+         this.b[var4] = var10.e();
+         int var5 = this.e[var4] = var10.g();
+         int var6 = this.c[var4] = var10.g();
          int var7 = var10.e();
          int var8 = var5 * var6;
-         this.b[var4] = new byte[var8];
+         this.f[var4] = new byte[var8];
          if(var7 == 0) {
             for(var7 = 0; var7 < var8; ++var7) {
-               this.b[var4][var7] = var9.f();
+               this.f[var4][var7] = var9.f();
             }
          } else if(var7 == 1) {
             for(var7 = 0; var7 < var5; ++var7) {
                for(var8 = 0; var8 < var6; ++var8) {
-                  this.b[var4][var7 + var8 * var5] = var9.f();
+                  this.f[var4][var7 + var8 * var5] = var9.f();
                }
             }
          }
@@ -49,23 +81,23 @@ public final class RSFont extends Rasterizer2D {
             this.a = var6;
          }
 
-         this.e[var4] = 1;
+         this.d[var4] = 1;
          this.g[var4] = var5 + 2;
          var7 = 0;
 
          for(var8 = var6 / 7; var8 < var6; ++var8) {
-            var7 += this.b[var4][var8 * var5];
+            var7 += this.f[var4][var8 * var5];
          }
 
          if(var7 <= var6 / 7) {
             --this.g[var4];
-            this.e[var4] = 0;
+            this.d[var4] = 0;
          }
 
          var7 = 0;
 
          for(var8 = var6 / 7; var8 < var6; ++var8) {
-            var7 += this.b[var4][var5 - 1 + var8 * var5];
+            var7 += this.f[var4][var5 - 1 + var8 * var5];
          }
 
          if(var7 <= var6 / 7) {
@@ -80,286 +112,342 @@ public final class RSFont extends Rasterizer2D {
       }
    }
 
-   public final void a(String var1, int var2, int var3, int var4) {
-      this.b(var3, var1, var4, 507 - this.b(var1));
+   private void a(String var1, int var2, int var3) {
+      var3 -= this.a;
+      int var4 = -1;
+
+      for(int var5 = 0; var5 < var1.length(); ++var5) {
+         char var6;
+         if((var6 = var1.charAt(var5)) > 255) {
+            var6 = 32;
+         }
+
+         if(var6 == 60) {
+            var4 = var5;
+         } else {
+            int var8;
+            int var11;
+            int var12;
+            if(var6 == 62 && var4 != -1) {
+               String var7 = var1.substring(var4 + 1, var5);
+               var4 = -1;
+               if(var7.equals(G)) {
+                  var6 = 60;
+               } else if(var7.equals(v)) {
+                  var6 = 62;
+               } else if(var7.equals(r)) {
+                  var6 = 160;
+               } else if(var7.equals(H)) {
+                  var6 = 173;
+               } else if(var7.equals(K)) {
+                  var6 = 215;
+               } else if(var7.equals(x)) {
+                  var6 = 128;
+               } else if(var7.equals(I)) {
+                  var6 = 169;
+               } else {
+                  if(!var7.equals(N)) {
+                     if(var7.startsWith(C)) {
+                        try {
+                           var12 = ((Sprite)null).e;
+                           if(W == 256) {
+                              //null.c(var2, var3 + this.a - var12);
+                           } else {
+                              //null.c(var2, var3 + this.a - var12, W);
+                           }
+
+                           var2 += ((Sprite)null).d;
+                        } catch (Exception var10) {
+                           ;
+                        }
+                     } else {
+                        var7 = var7;
+
+                        try {
+                           if(var7.startsWith(y)) {
+                              String var13;
+                              X = (var13 = var7.substring(4)).length() < 6?Color.decode(var13).getRGB():Integer.parseInt(var13, 16);
+                           } else if(var7.equals(B)) {
+                              X = O;
+                           } else if(var7.startsWith(s)) {
+                              W = Integer.valueOf(var7.substring(6)).intValue();
+                           } else if(var7.equals(J)) {
+                              W = R;
+                           } else if(var7.startsWith(A)) {
+                              Q = Integer.valueOf(var7.substring(4)).intValue();
+                           } else if(var7.equals(E)) {
+                              Q = 8388608;
+                           } else if(var7.equals(w)) {
+                              Q = -1;
+                           } else if(var7.startsWith(L)) {
+                              T = Integer.valueOf(var7.substring(2)).intValue();
+                           } else if(var7.equals(M)) {
+                              T = 0;
+                           } else if(var7.equals(D)) {
+                              T = -1;
+                           } else if(var7.startsWith(F)) {
+                              P = Integer.valueOf(var7.substring(5)).intValue();
+                           } else if(var7.equals(t)) {
+                              P = 0;
+                           } else if(var7.equals(u)) {
+                              P = U;
+                           } else if(var7.equals(z)) {
+                              var8 = R;
+                              var11 = U;
+                              var12 = O;
+                              Q = -1;
+                              T = -1;
+                              U = var11;
+                              P = var11;
+                              O = var12;
+                              X = var12;
+                              R = var8;
+                              W = var8;
+                              V = 0;
+                              S = 0;
+                           }
+                        } catch (Exception var9) {
+                           ;
+                        }
+                     }
+                     continue;
+                  }
+
+                  var6 = 174;
+               }
+            }
+
+            if(var4 == -1) {
+               var11 = this.e[var6];
+               var8 = this.c[var6];
+               if(var6 != 32) {
+                  if(W == 256) {
+                     if(P != -1) {
+                        this.c(var6, var2 + this.d[var6] + 1, var3 + this.b[var6] + 1, var11, var8, P);
+                     }
+
+                     this.c(var6, var2 + this.d[var6], var3 + this.b[var6], var11, var8, X);
+                  } else {
+                     if(P != -1) {
+                        this.a(var6, var2 + this.d[var6] + 1, var3 + this.b[var6] + 1, var11, var8, P, W);
+                     }
+
+                     this.a(var6, var2 + this.d[var6], var3 + this.b[var6], var11, var8, X, W);
+                  }
+               }
+
+               var12 = this.g[var6];
+               if(Q != -1) {
+                  Rasterizer2D_Sub1.a(var2, var3 + (int)((double)this.a * 0.7D), var12, Q);
+               }
+
+               if(T != -1) {
+                  Rasterizer2D_Sub1.a(var2, var3 + this.a, var12, T);
+               }
+
+               var2 += var12;
+            }
+         }
+      }
+
    }
 
-   public final void a(int var1, String var2, int var3, int var4) {
-      this.b(var1, var2, var3, var4 - this.b(var2) / 2);
-   }
-
-   public final void a(int var1, int var2, String var3, int var4, boolean var5) {
-      this.a(var5, var2 - this.a(var3) / 2, var1, var3, var4);
-   }
-
-   public final void b(int var1, int var2, String var3, int var4, boolean var5) {
-      this.a(false, var2, 255, var3, var4);
+   private static void a(int var0, int var1) {
+      Q = -1;
+      T = -1;
+      U = var1;
+      P = var1;
+      O = var0;
+      X = var0;
+      R = 256;
+      W = 256;
+      V = 0;
+      S = 0;
    }
 
    public final int a(String var1) {
       if(var1 == null) {
          return 0;
       } else {
-         int var2 = 0;
+         int var2 = -1;
+         int var3 = 0;
 
-         for(int var3 = 0; var3 < var1.length(); ++var3) {
-            if(var1.charAt(var3) == 64 && var3 + 4 < var1.length() && var1.charAt(var3 + 4) == 64) {
-               var3 += 4;
+         for(int var4 = 0; var4 < var1.length(); ++var4) {
+            char var5;
+            if((var5 = var1.charAt(var4)) > 255) {
+               var5 = 32;
+            }
+
+            if(var5 == 60) {
+               var2 = var4;
             } else {
-               var2 += this.g[var1.charAt(var3)];
-            }
-         }
+               if(var5 == 62 && var2 != -1) {
+                  String var7 = var1.substring(var2 + 1, var4);
+                  var2 = -1;
+                  if(var7.equals(G)) {
+                     var5 = 60;
+                  } else if(var7.equals(v)) {
+                     var5 = 62;
+                  } else if(var7.equals(r)) {
+                     var5 = 160;
+                  } else if(var7.equals(H)) {
+                     var5 = 173;
+                  } else if(var7.equals(K)) {
+                     var5 = 215;
+                  } else if(var7.equals(x)) {
+                     var5 = 128;
+                  } else if(var7.equals(I)) {
+                     var5 = 169;
+                  } else {
+                     if(!var7.equals(N)) {
+                        if(var7.startsWith(C)) {
+                           try {
+                              var3 += ((Sprite)null).d;
+                           } catch (Exception var6) {
+                              ;
+                           }
+                        }
+                        continue;
+                     }
 
-         return var2;
-      }
-   }
-
-   public final int b(String var1) {
-      if(var1 == null) {
-         return 0;
-      } else {
-         int var2 = 0;
-
-         for(int var3 = 0; var3 < var1.length(); ++var3) {
-            var2 += this.g[var1.charAt(var3)];
-         }
-
-         return var2;
-      }
-   }
-
-   public final void b(int var1, String var2, int var3, int var4) {
-      if(var2 != null) {
-         var3 -= this.a;
-
-         for(int var5 = 0; var5 < var2.length(); ++var5) {
-            char var6;
-            if((var6 = var2.charAt(var5)) != 32) {
-               this.a(this.b[var6], var4 + this.e[var6], var3 + this.f[var6], this.c[var6], this.d[var6], var1);
-            }
-
-            var4 += this.g[var6];
-         }
-
-      }
-   }
-
-   public final void a(int var1, String var2, int var3, int var4, int var5) {
-      if(var2 != null) {
-         var3 -= this.b(var2) / 2;
-         var5 -= this.a;
-
-         for(int var6 = 0; var6 < var2.length(); ++var6) {
-            char var7;
-            if((var7 = var2.charAt(var6)) != 32) {
-               this.a(this.b[var7], var3 + this.e[var7], var5 + this.f[var7] + (int)(Math.sin((double)var6 / 2.0D + (double)var4 / 5.0D) * 5.0D), this.c[var7], this.d[var7], var1);
-            }
-
-            var3 += this.g[var7];
-         }
-
-      }
-   }
-
-   public final void b(int var1, String var2, int var3, int var4, int var5) {
-      if(var2 != null) {
-         var1 -= this.b(var2) / 2;
-         var4 -= this.a;
-
-         for(int var6 = 0; var6 < var2.length(); ++var6) {
-            char var7;
-            if((var7 = var2.charAt(var6)) != 32) {
-               this.a(this.b[var7], var1 + this.e[var7] + (int)(Math.sin((double)var6 / 5.0D + (double)var3 / 5.0D) * 5.0D), var4 + this.f[var7] + (int)(Math.sin((double)var6 / 3.0D + (double)var3 / 5.0D) * 5.0D), this.c[var7], this.d[var7], var5);
-            }
-
-            var1 += this.g[var7];
-         }
-
-      }
-   }
-
-   public final void a(int var1, String var2, int var3, int var4, int var5, int var6) {
-      if(var2 != null) {
-         double var7;
-         if((var7 = 7.0D - (double)var1 / 8.0D) < 0.0D) {
-            var7 = 0.0D;
-         }
-
-         var5 -= this.b(var2) / 2;
-         var4 -= this.a;
-
-         for(var1 = 0; var1 < var2.length(); ++var1) {
-            char var9;
-            if((var9 = var2.charAt(var1)) != 32) {
-               this.a(this.b[var9], var5 + this.e[var9], var4 + this.f[var9] + (int)(Math.sin((double)var1 / 1.5D + (double)var3) * var7), this.c[var9], this.d[var9], var6);
-            }
-
-            var5 += this.g[var9];
-         }
-
-      }
-   }
-
-   public final void a(boolean var1, int var2, int var3, String var4, int var5) {
-      this.s = false;
-      int var6 = var2;
-      if(var4 != null) {
-         var5 -= this.a;
-
-         for(int var7 = 0; var7 < var4.length(); ++var7) {
-            if(var4.charAt(var7) == 64 && var7 + 4 < var4.length() && var4.charAt(var7 + 4) == 64) {
-               int var9;
-               if((var9 = this.c(var4.substring(var7 + 1, var7 + 4))) != -1) {
-                  var3 = var9;
-               }
-
-               var7 += 4;
-            } else {
-               char var8;
-               if((var8 = var4.charAt(var7)) != 32) {
-                  if(var1) {
-                     this.a(this.b[var8], var2 + this.e[var8] + 1, var5 + this.f[var8] + 1, this.c[var8], this.d[var8], 0);
+                     var5 = 174;
                   }
-
-                  this.a(this.b[var8], var2 + this.e[var8], var5 + this.f[var8], this.c[var8], this.d[var8], var3);
                }
 
-               var2 += this.g[var8];
-            }
-         }
-
-         if(this.s) {
-            Rasterizer2D.c(var5 + (int)((double)this.a * 0.7D), 8388608, var2 - var6, var6);
-         }
-
-      }
-   }
-
-   public final void a(int var1, int var2, String var3, int var4, int var5) {
-      if(var3 != null) {
-         this.r.setSeed((long)var4);
-         var4 = 192 + (this.r.nextInt() & 31);
-         var5 = 15 - this.a;
-
-         for(int var6 = 0; var6 < var3.length(); ++var6) {
-            if(var3.charAt(var6) == 64 && var6 + 4 < var3.length() && var3.charAt(var6 + 4) == 64) {
-               int var8;
-               if((var8 = this.c(var3.substring(var6 + 1, var6 + 4))) != -1) {
-                  var2 = var8;
-               }
-
-               var6 += 4;
-            } else {
-               char var7;
-               if((var7 = var3.charAt(var6)) != 32) {
-                  this.a(192, var1 + this.e[var7] + 1, this.b[var7], this.c[var7], var5 + this.f[var7] + 1, this.d[var7], 0);
-                  this.a(var4, var1 + this.e[var7], this.b[var7], this.c[var7], var5 + this.f[var7], this.d[var7], var2);
-               }
-
-               var1 += this.g[var7];
-               if((this.r.nextInt() & 3) == 0) {
-                  ++var1;
+               if(var2 == -1) {
+                  var3 += this.g[var5];
                }
             }
          }
 
+         return var3;
       }
    }
 
-   private int c(String var1) {
-      if(var1.equals("369")) {
-         return 3368601;
-      } else if(var1.equals("mon")) {
-         return '\uff80';
-      } else if(var1.equals("red")) {
-         return 16711680;
-      } else if(var1.equals("gre")) {
-         return '\uff00';
-      } else if(var1.equals("blu")) {
-         return 255;
-      } else if(var1.equals("ind")) {
-         return 4809928;
-      } else if(var1.equals("yel")) {
-         return 16776960;
-      } else if(var1.equals("cya")) {
-         return '\uffff';
-      } else if(var1.equals("mag")) {
-         return 16711935;
-      } else if(var1.equals("vio")) {
-         return 7999717;
-      } else if(var1.equals("whi")) {
-         return 16777215;
-      } else if(var1.equals("bla")) {
-         return 0;
-      } else if(var1.equals("lre")) {
-         return 16748608;
-      } else if(var1.equals("dre")) {
-         return 8388608;
-      } else if(var1.equals("dbl")) {
-         return 128;
-      } else if(var1.equals("or1")) {
-         return 16756736;
-      } else if(var1.equals("or2")) {
-         return 16740352;
-      } else if(var1.equals("or3")) {
-         return 16723968;
-      } else if(var1.equals("dor")) {
-         return 9724672;
-      } else if(var1.equals("gr1")) {
-         return 12648192;
-      } else if(var1.equals("gr2")) {
-         return 8453888;
-      } else if(var1.equals("gr3")) {
-         return 4259584;
-      } else {
-         if(var1.equals("str")) {
-            this.s = true;
-         }
-
-         if(var1.equals("end")) {
-            this.s = false;
-         }
-
-         return -1;
+   public final void a(String var1, int var2, int var3, int var4, int var5) {
+      if(var1 != null) {
+         a(var4, var5);
+         this.a(var1, var2, var3);
       }
+
    }
 
-   private void a(byte[] var1, int var2, int var3, int var4, int var5, int var6) {
-      int var7 = var2 + var3 * i;
-      int var8 = i - var4;
+   public final void b(String var1, int var2, int var3, int var4, int var5) {
+      if(var1 != null) {
+         a(0, -1);
+         this.a(var1, 259 - this.a(var1) / 2, var3);
+      }
+
+   }
+
+   private void a(int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+      int var8 = var2 + var3 * Rasterizer2D.i;
+      int var9 = Rasterizer2D.i - var4;
+      int var10 = 0;
+      int var11 = 0;
+      int var12;
+      if(var3 < Rasterizer2D.k) {
+         var12 = Rasterizer2D.k - var3;
+         var5 -= var12;
+         var3 = Rasterizer2D.k;
+         var11 = 0 + var12 * var4;
+         var8 += var12 * Rasterizer2D.i;
+      }
+
+      if(var3 + var5 > Rasterizer2D.l) {
+         var5 -= var3 + var5 - Rasterizer2D.l;
+      }
+
+      if(var2 < Rasterizer2D.m) {
+         var12 = Rasterizer2D.m - var2;
+         var4 -= var12;
+         var2 = Rasterizer2D.m;
+         var11 += var12;
+         var8 += var12;
+         var10 = var12 + 0;
+         var9 += var12;
+      }
+
+      if(var2 + var4 > Rasterizer2D.n) {
+         var12 = var2 + var4 - Rasterizer2D.n;
+         var4 -= var12;
+         var10 += var12;
+         var9 += var12;
+      }
+
+      if(var4 > 0 && var5 > 0) {
+         byte[] var10001 = this.f[var1];
+         int var10002 = var6;
+         int var10004 = var8;
+         int var10007 = var9;
+         int var10008 = var10;
+         var10 = var7;
+         var9 = var10008;
+         var8 = var10007;
+         var7 = var5;
+         var6 = var4;
+         var5 = var10004;
+         var4 = var11;
+         var3 = var10002;
+         byte[] var14 = var10001;
+         int[] var13 = Rasterizer2D.h;
+         var3 = ((var3 & 16711935) * var10 & -16711936) + ((var3 & '\uff00') * var10 & 16711680) >> 8;
+         var10 = 256 - var10;
+
+         for(var7 = -var7; var7 < 0; ++var7) {
+            for(var11 = -var6; var11 < 0; ++var11) {
+               if(var14[var4++] != 0) {
+                  var12 = var13[var5];
+                  var13[var5++] = (((var12 & 16711935) * var10 & -16711936) + ((var12 & '\uff00') * var10 & 16711680) >> 8) + var3;
+               } else {
+                  ++var5;
+               }
+            }
+
+            var5 += var8;
+            var4 += var9;
+         }
+      }
+
+   }
+
+   private void c(int var1, int var2, int var3, int var4, int var5, int var6) {
+      int var7 = var2 + var3 * Rasterizer2D.i;
+      int var8 = Rasterizer2D.i - var4;
       int var9 = 0;
       int var10 = 0;
       int var11;
-      if(var3 < k) {
-         var11 = k - var3;
+      if(var3 < Rasterizer2D.k) {
+         var11 = Rasterizer2D.k - var3;
          var5 -= var11;
-         var3 = k;
+         var3 = Rasterizer2D.k;
          var10 = 0 + var11 * var4;
-         var7 += var11 * i;
+         var7 += var11 * Rasterizer2D.i;
       }
 
-      if(var3 + var5 >= l) {
-         var5 -= var3 + var5 - l;
+      if(var3 + var5 > Rasterizer2D.l) {
+         var5 -= var3 + var5 - Rasterizer2D.l;
       }
 
-      if(var2 < m) {
-         var11 = m - var2;
+      if(var2 < Rasterizer2D.m) {
+         var11 = Rasterizer2D.m - var2;
          var4 -= var11;
-         var2 = m;
+         var2 = Rasterizer2D.m;
          var10 += var11;
          var7 += var11;
          var9 = var11 + 0;
          var8 += var11;
       }
 
-      if(var2 + var4 >= n) {
-         var11 = var2 + var4 - n;
+      if(var2 + var4 > Rasterizer2D.n) {
+         var11 = var2 + var4 - Rasterizer2D.n;
          var4 -= var11;
          var9 += var11;
          var8 += var11;
       }
 
       if(var4 > 0 && var5 > 0) {
+         byte[] var10001 = this.f[var1];
          int var10002 = var6;
          int var10004 = var7;
          var9 = var9;
@@ -369,8 +457,8 @@ public final class RSFont extends Rasterizer2D {
          var5 = var10004;
          var4 = var10;
          var3 = var10002;
-         byte[] var13 = var1;
-         int[] var12 = h;
+         byte[] var13 = var10001;
+         int[] var12 = Rasterizer2D.h;
          var10 = -(var6 >> 2);
          var6 = -(var6 & 3);
 
@@ -414,73 +502,5 @@ public final class RSFont extends Rasterizer2D {
          }
       }
 
-   }
-
-   private void a(int var1, int var2, byte[] var3, int var4, int var5, int var6, int var7) {
-      int var8 = var2 + var5 * i;
-      int var9 = i - var4;
-      int var10 = 0;
-      int var11 = 0;
-      int var12;
-      if(var5 < k) {
-         var12 = k - var5;
-         var6 -= var12;
-         var5 = k;
-         var11 = 0 + var12 * var4;
-         var8 += var12 * i;
-      }
-
-      if(var5 + var6 >= l) {
-         var6 -= var5 + var6 - l;
-      }
-
-      if(var2 < m) {
-         var12 = m - var2;
-         var4 -= var12;
-         var2 = m;
-         var11 += var12;
-         var8 += var12;
-         var10 = var12 + 0;
-         var9 += var12;
-      }
-
-      if(var2 + var4 >= n) {
-         var12 = var2 + var4 - n;
-         var4 -= var12;
-         var10 += var12;
-         var9 += var12;
-      }
-
-      if(var4 > 0 && var6 > 0) {
-         int var10001 = var6;
-         int var10002 = var8;
-         int var10007 = var9;
-         var9 = var7;
-         var8 = var10007;
-         var7 = var10;
-         var6 = var4;
-         var5 = var11;
-         int[] var15 = h;
-         int var14 = var10002;
-         var2 = var10001;
-         byte[] var13 = var3;
-         var9 = ((var9 & 16711935) * var1 & -16711936) + ((var9 & '\uff00') * var1 & 16711680) >> 8;
-         var10 = 256 - var1;
-
-         for(var2 = -var2; var2 < 0; ++var2) {
-            for(var11 = -var6; var11 < 0; ++var11) {
-               if(var13[var5++] != 0) {
-                  var12 = var15[var14];
-                  var15[var14++] = (((var12 & 16711935) * var10 & -16711936) + ((var12 & '\uff00') * var10 & 16711680) >> 8) + var9;
-               } else {
-                  ++var14;
-               }
-            }
-
-            var14 += var8;
-            var5 += var7;
-         }
-
-      }
    }
 }
